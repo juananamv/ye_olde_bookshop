@@ -24,11 +24,17 @@
         <a class="navbar-item" href=<%= products_path %>>
           All Products
         </a>
-        <a class="navbar-item">
+        <a class="navbar-item" href=<%= categories_path %>>
           Categories
         </a>
       </div>
     </div>
+    <form action="/products" method="get">
+    <div class="navbar-end">
+        <input class="input navbar-item mt-2" type="text" id="query" name="query" placeholder="Search Products..."/>
+        <input class="button is-primary mt-2 ml-3" type="submit" value="Search">
+    </div>
+    </form>
   </nav>
 </header>
 

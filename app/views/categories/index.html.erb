@@ -1,0 +1,14 @@
+<h1 class="title">All Categories</h1>
+<div class="columns is-multiline is_centered">
+  <% @categories.each do |category| %>
+    <div class="column is-half">
+      <div class="card p-3 is-justify-content-space-between" style="height: 100%; display: flex; flex-direction: column">
+        <div class="card-content">
+          <p class="title is-5">
+            <%= link_to category.name, category %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
