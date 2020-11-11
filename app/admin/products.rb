@@ -15,6 +15,7 @@ ActiveAdmin.register Product do
   show do |product|
     attributes_table do
       row :name
+      row :description
       row :price
       row :categories do |product|
         product.categories.map { |p| p.name }.join(", ").html_safe
@@ -26,7 +27,9 @@ ActiveAdmin.register Product do
     f.semantic_errors # shows errors on :base
     f.inputs "Product" do
       f.input :name
+      f.input :description
       f.input :price
+      f.input :quantity
       f.has_many :product_tags, allow_destroy: true do |n_f|
         n_f.input :category
       end
