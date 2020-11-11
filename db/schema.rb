@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_161831) do
   end
 
   create_table "provinces", force: :cascade do |t|
+    t.string "name"
     t.string "province_code"
     t.decimal "tax_rate"
     t.datetime "created_at", precision: 6, null: false
