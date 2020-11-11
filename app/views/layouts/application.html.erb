@@ -31,6 +31,14 @@
     </div>
     <form action="/products" method="get">
     <div class="navbar-end">
+      <div class="select navbar-item mt-2 ml-3">
+        <select id="category" name="category">
+          <option value="">All Products</option>
+          <% Category.all.each do |category| %>
+            <option value="<%= category.id%>"><%= category.name %></option>
+          <% end %>
+        </select>
+      </div>
         <input class="input navbar-item mt-2" type="text" id="query" name="query" placeholder="Search Products..."/>
         <input class="button is-primary mt-2 ml-3" type="submit" value="Search">
     </div>
