@@ -6,6 +6,7 @@ ActiveAdmin.register Product do
     column :id
     column :name
     column :price
+    column :quantity
     column :categories do |product|
       product.categories.map { |p| p.name }.join(", ").html_safe
     end
@@ -17,6 +18,7 @@ ActiveAdmin.register Product do
       row :name
       row :description
       row :price
+      row :quantity
       row :categories do |product|
         product.categories.map { |p| p.name }.join(", ").html_safe
       end
