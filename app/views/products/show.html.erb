@@ -1,0 +1,30 @@
+<div class="columns is-centered">
+  <div class="column is-half">
+  <div class="card p-3 is-justify-content-space-between" style="height: 100%; display: flex; flex-direction: column">
+    <div class="card-image">
+      <figure class="image">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSezIQp6VrGb7dGRll4Pf96arevoq__jnbuIw&usqp=CAU" alt="image">
+      </figure>
+    </div>
+    <div class="card-content">
+      <p class="title is-5">
+        <%= @product.name %>
+      </p>
+      <p>
+        <%= @product.description %>
+      </p>
+    </div>
+    <footer class="card-footer">
+      <p class="card-footer-item">
+        Quantity: <%= @product.quantity %>
+      </p>
+      <p class="card-footer-item">
+        Price: <%= @product.price %>
+      </p>
+      <p class="card-footer-item">
+        Genres: <%= @product.categories.map { |p| p.name }.join(", ") %>
+      </p>
+    </footer>
+  </div>
+</div>
+</div>

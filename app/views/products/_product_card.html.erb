@@ -1,0 +1,24 @@
+<% @products.each do |product| %>
+  <div class="column is-one-fifth">
+    <div class="card p-3" style="height: 100%">
+      <div class="card-image">
+        <figure class="image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSezIQp6VrGb7dGRll4Pf96arevoq__jnbuIw&usqp=CAU" alt="image">
+        </figure>
+      </div>
+      <div class="card-content">
+        <p class="title is-5">
+          <%= link_to product.name, product %>
+        </p>
+      </div>
+      <footer class="card-footer">
+        <p class="card-footer-item">
+          Quantity: <br><%= product.quantity %>
+        </p>
+        <p class="card-footer-item">
+          Price: <br><%= product.price %>
+        </p>
+      </footer>
+    </div>
+  </div>
+<% end %>
