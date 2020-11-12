@@ -1,28 +1,26 @@
-<% @products.each do |product| %>
-  <div class="column is-one-fifth">
-    <div class="card p-3" style="height: 100%">
-      <div class="card-image">
-        <figure class="image">
-          <% if product.image.present? %>
-            <p>Image</p>
-          <% else %>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSezIQp6VrGb7dGRll4Pf96arevoq__jnbuIw&usqp=CAU" alt="image">
-          <% end %>
-        </figure>
-      </div>
-      <div class="card-content">
-        <p class="title is-5">
-          <%= link_to product.name, product %>
-        </p>
-      </div>
-      <footer class="card-footer">
-        <p class="card-footer-item">
-          Quantity: <br><%= product.quantity %>
-        </p>
-        <p class="card-footer-item">
-          Price: <br><%= product.price %>
-        </p>
-      </footer>
+<div class="column <%= defined?(single) && single ? "is-half" : "is-one-fifth" %>">
+  <div class="card p-3 is-justify-content-space-between" style="height: 100%; display: flex; flex-direction: column">
+    <div class="card-image">
+      <figure class="image">
+        <% if product.image.present? %>
+          <%= image_tag product.image %>
+        <% else %>
+          <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500001/134557215-no-thumbnail-images-placeholder-for-forums-blogs-and-websites.jpg?ver=6" alt="no image" style="height: 295px">
+        <% end %>
+      </figure>
     </div>
+    <div class="card-content">
+      <p class="title is-5">
+        <%= defined?(single) && single ? product.name : link_to(product.name, product)  %>
+      </p>
+    </div>
+    <footer class="card-footer">
+      <p class="card-footer-item">
+        Quantity: <br><%= product.quantity %>
+      </p>
+      <p class="card-footer-item">
+        Price: <br><%= product.price %>
+      </p>
+    </footer>
   </div>
-<% end %>
+</div>
