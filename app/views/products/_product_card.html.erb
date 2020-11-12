@@ -3,7 +3,11 @@
     <div class="card p-3" style="height: 100%">
       <div class="card-image">
         <figure class="image">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSezIQp6VrGb7dGRll4Pf96arevoq__jnbuIw&usqp=CAU" alt="image">
+          <% if product.image.present? %>
+            <p>Image</p>
+          <% else %>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSezIQp6VrGb7dGRll4Pf96arevoq__jnbuIw&usqp=CAU" alt="image">
+          <% end %>
         </figure>
       </div>
       <div class="card-content">
