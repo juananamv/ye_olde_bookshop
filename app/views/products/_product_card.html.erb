@@ -5,14 +5,23 @@
         <% if product.image.present? %>
           <%= image_tag product.image %>
         <% else %>
-          <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500001/134557215-no-thumbnail-images-placeholder-for-forums-blogs-and-websites.jpg?ver=6" alt="no image" style="height: 295px">
+          <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500001/134557215-no-thumbnail-images-placeholder-for-forums-blogs-and-websites.jpg?ver=6" alt="no image">
         <% end %>
       </figure>
     </div>
     <div class="card-content">
-      <p class="title is-5">
-        <%= defined?(single) && single ? product.name : link_to(product.name, product)  %>
-      </p>
+      <% if defined?(single) && single %>
+        <p class="title is-5">
+          <%= product.name %>
+        </p>
+        <p>
+          <%= product.description %>
+        </p>
+      <% else %>
+        <p class="title is-5">
+          <%= link_to(product.name, product)  %>
+        </p>
+      <% end %>
     </div>
     <footer class="card-footer">
       <p class="card-footer-item">
