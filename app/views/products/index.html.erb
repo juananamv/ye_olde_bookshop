@@ -1,4 +1,15 @@
 <h1 class="title"><%= @header %></h1>
+<% unless @cart.nil? %>
+<details>
+  <summary>Shopping Cart</summary>
+  <div class="columns is-multiline is_centered">
+    <% @cart.each do |product| %>
+      <%= render partial: "product_card", locals: { product: product }%>
+      <%= link_to ' ✖', remove_from_cart_path(product), method: :delete %>
+    <% end %>
+  </div>
+</details>
+<% end %>
 <div class="columns is-multiline is_centered">
 <% @products.each do |product| %>
   <%= render partial: "product_card", locals: { product: product }%>

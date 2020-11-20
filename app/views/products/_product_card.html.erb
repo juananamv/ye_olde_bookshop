@@ -1,4 +1,4 @@
-<div class="column <%= defined?(single) && single ? "is-half" : "is-one-fifth" %>">
+<div class="column <%= defined?(single) && single ? "is-half" : "is-one-quarter" %>">
   <div class="card p-3 is-justify-content-space-between" style="height: 100%; display: flex; flex-direction: column">
     <div class="card-image">
       <figure class="image">
@@ -23,13 +23,29 @@
         </p>
       <% end %>
     </div>
-    <footer class="card-footer">
-      <p class="card-footer-item">
-        Quantity: <br><%= product.quantity %>
-      </p>
-      <p class="card-footer-item">
-        Price: <br><%= product.price %>
-      </p>
+    <footer class="card-footer is-align-items-center">
+      <% if product.quantity.zero? %>
+        <div class="card-footer-item">Out of Stock</div>
+      <% else %>
+        <div class="card-footer-item">
+        Stock: <br><%= product.quantity %>
+      </div>
+      <div class="card-footer-item">
+        Price: <br><%= number_to_currency product.price %>
+      </div>
+      <div class="card-footer-item">
+        <% if !session[:cart].key?(product.id.to_s)%>
+          <%= form_with(url: "/products/add_to_cart/#{product.id}", method: "post", class: "field") do %>
+            <div class="control">
+            <%= number_field_tag(:quantity, nil, class: "input") %>
+            </div>
+            <%= submit_tag("+ Add ", class: "button")%>
+          <% end %>
+        <% else %>
+          In Cart: <%= session[:cart][product.id.to_s] %>
+        <% end %>
+      </div>
+      <% end %>
     </footer>
   </div>
 </div>
