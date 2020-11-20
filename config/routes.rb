@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show]
   root "products#index"
   post "products/add_to_cart/:id", to: "products#add_to_cart", as: "add_to_cart"
+  post "products/increase_quantity/:id", to: "products#increase_quantity", as: "increase_quantity"
+  post "products/decrease_quantity/:id", to: "products#decrease_quantity", as: "decrease_quantity"
   delete "products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
 
   devise_for :admin_users, ActiveAdmin::Devise.config

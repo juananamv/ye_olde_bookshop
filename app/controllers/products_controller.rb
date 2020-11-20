@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     id = params[:id].to_i
-    quantity = params[:quantity].to_i
+    quantity = params[:quantity].to_i.zero? ? 1 : params[:quantity].to_i
 
     session[:cart][id.to_s] = quantity unless session[:cart].key?(id)
     redirect_to root_path
@@ -38,6 +38,16 @@ class ProductsController < ApplicationController
     id = params[:id].to_i
     session[:cart].delete(id.to_s)
 
+    redirect_to root_path
+  end
+
+  def increase_quantity
+    session[:cart][params[:id].to_s] += 1
+    redirect_to root_path
+  end
+
+  def decrease_quantity
+    session[:cart][params[:id].to_s] -= 1
     redirect_to root_path
   end
 
