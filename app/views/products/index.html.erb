@@ -1,5 +1,10 @@
 <h1 class="title"><%= @header %></h1>
-<% unless @cart.nil? %>
+<% flash.each do |type, msg|%>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+<% unless @cart.empty? %>
 <details>
   <summary>Shopping Cart</summary>
   <div class="columns is-multiline is_centered">

@@ -30,7 +30,12 @@ class ProductsController < ApplicationController
     id = params[:id].to_i
     quantity = params[:quantity].to_i.zero? ? 1 : params[:quantity].to_i
 
-    session[:cart][id.to_s] = quantity unless session[:cart].key?(id)
+    if quantity > Product.find(id).quantity
+      flash.alert = "Invalid quantity"
+    else
+      flash.notice = "Success"
+      session[:cart][id.to_s] = quantity
+    end
     redirect_to root_path
   end
 
@@ -42,12 +47,14 @@ class ProductsController < ApplicationController
   end
 
   def increase_quantity
-    session[:cart][params[:id].to_s] += 1
+    id = params[:id]
+    session[:cart][id.to_s] += 1 unless session[:cart][id] + 1 > Product.find(id).quantity
     redirect_to root_path
   end
 
   def decrease_quantity
-    session[:cart][params[:id].to_s] -= 1
+    id = params[:id]
+    session[:cart][id.to_s] -= 1 unless (session[:cart][id] - 1).negative?
     redirect_to root_path
   end
 
