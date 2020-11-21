@@ -15,22 +15,27 @@ Product.delete_all
 Category.delete_all
 
 NUMBER_OF_CATEGORIES = 10
-NUMBER_PER_CATEGORY = 15
+NUMBER_PER_CATEGORY = 10
 
 NUMBER_OF_CATEGORIES.times do
   category = Category.create(name: Faker::Book.genre)
 
   NUMBER_PER_CATEGORY.times do
     product = category.products.create(
-      name:             Faker::Book.title.unique,
-      description:      "A #{category.name} novel written by #{Faker::Book.author}. #{rand 42..1532} pages.",
-      price:            Faker::Commerce.price,
-      quantity:         rand(3..22)
+      name:        Faker::Book.unique.title,
+      description: "A #{category.name} novel written by #{Faker::Book.author}. #{rand 42..1532} pages.",
+      price:       Faker::Commerce.price,
+      quantity:    rand(3..22)
     )
+    # Uncomment for final
+    # downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{category.name}")
+    # product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
   end
 end
 
 puts "Created #{Category.count} Categories"
 puts "Created #{Product.count} Products"
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
+end
