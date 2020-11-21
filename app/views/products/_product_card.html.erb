@@ -1,26 +1,51 @@
-<div class="column <%= defined?(single) && single ? "is-half" : "is-one-fifth" %>">
+<div class="column <%= defined?(single) && single ? "is-half" : "is-one-third" %>">
   <div class="card p-3 is-justify-content-space-between" style="height: 100%; display: flex; flex-direction: column">
     <div class="card-image">
       <figure class="image">
         <% if product.image.present? %>
           <%= image_tag product.image %>
         <% else %>
-          <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500001/134557215-no-thumbnail-images-placeholder-for-forums-blogs-and-websites.jpg?ver=6" alt="no image" style="height: 295px">
+          <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500001/134557215-no-thumbnail-images-placeholder-for-forums-blogs-and-websites.jpg?ver=6" alt="no image">
         <% end %>
       </figure>
     </div>
     <div class="card-content">
-      <p class="title is-5">
-        <%= defined?(single) && single ? product.name : link_to(product.name, product)  %>
-      </p>
+      <% if defined?(single) && single %>
+        <p class="title is-5">
+          <%= product.name %>
+        </p>
+        <p>
+          <%= product.description %>
+        </p>
+      <% else %>
+        <p class="title is-5">
+          <%= link_to(product.name, product)  %>
+        </p>
+      <% end %>
     </div>
-    <footer class="card-footer">
-      <p class="card-footer-item">
-        Quantity: <br><%= product.quantity %>
-      </p>
-      <p class="card-footer-item">
-        Price: <br><%= product.price %>
-      </p>
+    <footer class="card-footer is-align-items-center">
+      <% if product.quantity.zero? %>
+        <div class="card-footer-item">Out of Stock</div>
+      <% else %>
+        <div class="card-footer-item">
+        Stock: <br><%= product.quantity %>
+      </div>
+      <div class="card-footer-item">
+        Price: <br><%= number_to_currency product.price %>
+      </div>
+      <div class="card-footer-item">
+        <% if !session[:cart].key?(product.id.to_s)%>
+          <%= form_with(url: "/products/add_to_cart/#{product.id}", method: "post", class: "field") do %>
+            <%= number_field_tag(:quantity, nil, class: "input") %>
+            <%= submit_tag("Add to Cart", class: "button is-link")%>
+          <% end %>
+        <% else %>
+          <%= link_to("➖", decrease_quantity_path(product.id), method: "post") unless session[:cart][product.id.to_s] <= 1 %>
+            <%= session[:cart][product.id.to_s] %>
+          <%= link_to("➕", increase_quantity_path(product.id), method: "post") unless session[:cart][product.id.to_s] >= product.quantity %>
+        <% end %>
+      </div>
+      <% end %>
     </footer>
   </div>
 </div>

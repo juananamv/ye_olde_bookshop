@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :username, :password, :salt, :address, :city, :province_id
+  permit_params :username, :password, :salt, :address, :city, :province_id, :postal_code
 
   form do |f|
     f.semantic_errors
