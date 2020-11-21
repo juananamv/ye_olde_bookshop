@@ -14,8 +14,8 @@ Province.delete_all
 Product.delete_all
 Category.delete_all
 
-NUMBER_OF_CATEGORIES = 10
-NUMBER_PER_CATEGORY = 10
+NUMBER_OF_CATEGORIES = 5
+NUMBER_PER_CATEGORY = 5
 
 NUMBER_OF_CATEGORIES.times do
   category = Category.create(name: Faker::Book.genre)
@@ -28,8 +28,8 @@ NUMBER_OF_CATEGORIES.times do
       quantity:    rand(3..22)
     )
     # Uncomment for final
-    # downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{category.name}")
-    # product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
+    downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{category.name}")
+    product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
   end
 end
 
