@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price, :quantity, product_tags_attributes: [:id, :product_id, :category_id]
+  permit_params :name, :description, :price, :quantity, :image, product_tags_attributes: %i[id product_id category_id]
 
   index do
     selectable_column
@@ -13,7 +13,7 @@ ActiveAdmin.register Product do
     actions
   end
 
-  show do |product|
+  show do |item|
     attributes_table do
       row :name
       row :description
@@ -21,6 +21,9 @@ ActiveAdmin.register Product do
       row :quantity
       row :categories do |product|
         product.categories.map { |p| p.name }.join(", ").html_safe
+      end
+      row :image do
+        item.image.present? ? image_tag(item.image) : "N/A"
       end
     end
   end
@@ -35,6 +38,7 @@ ActiveAdmin.register Product do
       f.has_many :product_tags, allow_destroy: true do |n_f|
         n_f.input :category
       end
+      f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image) : ""
     end
     f.actions         # adds the 'Submit' and 'Cancel' buttons
   end
