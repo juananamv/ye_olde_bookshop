@@ -79,10 +79,8 @@ ActiveRecord::Schema.define(version: 2020_11_21_232438) do
   create_table "orders", force: :cascade do |t|
     t.date "date"
     t.string "status"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "product_tags", force: :cascade do |t|
@@ -112,24 +110,9 @@ ActiveRecord::Schema.define(version: 2020_11_21_232438) do
     t.decimal "pst"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
-    t.string "salt"
-    t.string "address"
-    t.string "city"
-    t.string "postal_code"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "province_id", null: false
-    t.index ["province_id"], name: "index_users_on_province_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "orders", "users"
   add_foreign_key "product_tags", "categories"
   add_foreign_key "product_tags", "products"
-  add_foreign_key "users", "provinces"
 end
