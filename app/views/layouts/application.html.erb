@@ -27,6 +27,44 @@
         <a class="navbar-item" href=<%= categories_path %>>
           Categories
         </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          <% if user_signed_in? %>
+            <%= current_user.email %>
+          <% else %>
+            User
+          <% end %>
+        </a>
+
+        <div class="navbar-dropdown">
+          <% if user_signed_in? %>
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %> |
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-item'  %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-item'  %> |
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-item'  %>
+          <% end %>
+        </div>
+      </div>
+
+
+
+
+
+        <% if user_signed_in? %>
+        <div class="navbar-item">
+          User
+        </div>
+        <% end %>
+
+
+
+
+
+
+
+
       </div>
     </div>
     <form action="/products" method="get">
@@ -39,8 +77,8 @@
           <% end %>
         </select>
       </div>
-        <input class="input navbar-item mt-2" type="text" id="query" name="query" placeholder="Search Products..."/>
-        <input class="button is-primary mt-2 ml-3" type="submit" value="Search">
+      <input class="input navbar-item mt-2" type="text" id="query" name="query" placeholder="Search Products..."/>
+      <input class="button navbar-item is-primary mt-2 ml-3" type="submit" value="Search">
     </div>
     </form>
   </nav>
