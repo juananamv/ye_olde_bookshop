@@ -1,1 +1,12 @@
-<h1><%= @user.orders %></h1>
+<ul>
+  <% @orders.each do |o| %>
+    <li>Order ID: <%= o.id %></li>
+    <ul>
+      <% o.order_items.each do |oi| %>
+        <li><%= oi.product.name %> x <%= oi.count %> <%= oi.subtotal %></li>
+      <% end %>
+    </ul>
+
+
+  <% end %>
+</ul>
