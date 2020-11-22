@@ -16,7 +16,7 @@
             <img src="https://i.imgur.com/qDoYN3Q.png" alt="ye Olde logo" style="max-height: none; height: 50px">
           </a>
         </div>
-        <div class="navbar-menu" id="main-menu">
+        <div class="navbar-menu" id="main-menu" style="margin-right: 0px">
           <div class="navbar-start" style="align-items: center">
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
@@ -28,10 +28,10 @@
               </a>
               <div class="navbar-dropdown">
                 <% if user_signed_in? %>
-                  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %> |
+                  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-item'  %>
                 <% else %>
-                  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-item'  %> |
+                  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-item'  %>
                   <%= link_to "Login", new_user_session_path, :class => 'navbar-item'  %>
                 <% end %>
               </div>

@@ -9,12 +9,26 @@ AdminUser.delete_all
 ProductTag.delete_all
 OrderItem.delete_all
 Order.delete_all
+User.delete_all
 Province.delete_all
 Product.delete_all
 Category.delete_all
 
 NUMBER_OF_CATEGORIES = 5
 NUMBER_PER_CATEGORY = 5
+
+filename = Rails.root.join("db/province_info.csv")
+province_data = File.read(filename)
+provinces = CSV.parse(province_data, headers: true, encoding: "utf-8")
+
+provinces.each do |p|
+  Province.create(
+    name:          p["name"],
+    province_code: p["province_code"],
+    gst:           p["gst"],
+    pst:           p["pst"]
+  )
+end
 
 NUMBER_OF_CATEGORIES.times do
   category = Category.create(name: Faker::Book.genre)
@@ -27,8 +41,8 @@ NUMBER_OF_CATEGORIES.times do
       quantity:    rand(3..22)
     )
     # Uncomment for final
-    # downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{category.name}")
-    # product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
+    downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{product.name}")
+    product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
   end
 end
 
