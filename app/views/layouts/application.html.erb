@@ -29,6 +29,7 @@
               <div class="navbar-dropdown">
                 <% if user_signed_in? %>
                   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-item' %>
+                  <%= link_to 'Checkout', checkout_path, :class => 'navbar-item'%>
                   <%= link_to 'Orders', my_orders_path, :class => 'navbar-item'%>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-item'  %>
                 <% else %>
@@ -40,6 +41,9 @@
             <a class="navbar-item" href=<%= categories_path %>>
               Categories
             </a>
+            <% if user_signed_in? %>
+
+            <% end %>
           </div>
           <form class="navbar-end" action="/products" method="get" style="align-items: center">
             <div class="select navbar-item">

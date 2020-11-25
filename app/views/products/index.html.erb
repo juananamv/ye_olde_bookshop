@@ -6,6 +6,7 @@
 <% end %>
 <% unless @cart.empty? %>
 <details>
+  <%= link_to "Go to Checkout", checkout_path, class: "button", style: "margin: 10px"%>
   <summary>Shopping Cart</summary>
   <div class="columns is-multiline is_centered">
     <% @cart.each do |product| %>

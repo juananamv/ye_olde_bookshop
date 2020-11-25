@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "products/decrease_quantity/:id", to: "products#decrease_quantity", as: "decrease_quantity"
   delete "products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
   get "users/my_orders", to: "users#my_orders", as: "my_orders"
+  get "/checkout", to: "checkout#index", as: "checkout"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
