@@ -21,8 +21,8 @@
         <% end %>
       </tbody>
     </table>
-    <h5>GST/HST: <%= number_to_currency(o.total * @user.province.gst) %></h5>
-    <h5>PST: <%= number_to_currency(o.total * @user.province.gst) %></h5>
+    <h5>GST/HST: <%= number_to_currency(o.gst) %></h5>
+    <h5>PST: <%= number_to_currency(o.pst) %></h5>
     <h5>Grand Total: <%= number_to_currency(o.total + (o.total * @user.province.gst) + (o.total * @user.province.pst)) %></h5>
   <% end %>
 </div>

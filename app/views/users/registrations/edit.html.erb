@@ -32,7 +32,7 @@
   </div>
 
   <div class="field"><%= f.label :province %><br />
-    <%= f.select :province, Province.all.collect {|u| [u.name, u.id]} %>
+    <%= f.select :province_id, Province.all.collect {|u| [u.name, u.id]} %>
   </div>
 
   <div class="field"><%= f.label :address %><br />
