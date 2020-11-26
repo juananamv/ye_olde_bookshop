@@ -1,0 +1,51 @@
+<%= @shopping_cart %>
+<%= @products %>
+<%= @subtotal %>
+<%= @gst %>
+<%= @pst %>
+<%= @total %>
+<h3 class="title is-3">Shopping Cart</h3>
+<table class="table" style="width: 100%; text-align: right">
+  <thead>
+    <tr>
+      <th style="text-align: left">Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td style="text-align: left"><%= link_to product.name, product %></td>
+        <td><%= @shopping_cart["#{product.id}"] %></td>
+        <td><%= number_to_currency(product.price * @shopping_cart["#{product.id}"]) %></td>
+        <td><%= link_to ' ✖', remove_from_cart_path(product), method: :delete %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td style="text-align: left">Subtotal</td>
+        <td></td>
+        <td><%= number_to_currency @subtotal %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">GST/HST <%= number_to_percentage (@user.province.gst * 100) %></td>
+        <td></td>
+        <td><%= number_to_currency @gst %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">PST <%= number_to_percentage (@user.province.pst * 100) %></td>
+        <td></td>
+        <td><%= number_to_currency @pst %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Total</td>
+        <td></td>
+        <td><strong><%= number_to_currency @total %></strong></td>
+        <td></td>
+      </tr>
+  </tbody>
+</table>

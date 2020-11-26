@@ -1,0 +1,28 @@
+<h2 class="title is-2">My Orders</h2>
+<div class="container">
+  <% @orders.each do |o| %>
+    <h3 class="title is-3">Order #<%= o.id %></h3>
+    <h4 class="title is-4"><%= o.created_at%></h4>
+    <table class="table" style="width: 100%; table-layout: fixed; text-align: right">
+      <thead>
+        <tr>
+          <th style="text-align: left">Product Name</th>
+          <th>Product Count</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% o.order_items.each do |oi| %>
+          <tr>
+            <td style="text-align: left"><%= oi.product.name %></td>
+            <td><%= oi.count %></td>
+            <td><%= number_to_currency oi.subtotal %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <h5>GST/HST: <%= number_to_currency(o.total * @user.province.gst) %></h5>
+    <h5>PST: <%= number_to_currency(o.total * @user.province.gst) %></h5>
+    <h5>Grand Total: <%= number_to_currency(o.total + (o.total * @user.province.gst) + (o.total * @user.province.pst)) %></h5>
+  <% end %>
+</div>
