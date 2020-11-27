@@ -22,7 +22,6 @@
               <a class="navbar-link">
                 <% if user_signed_in? %>
                   <%= current_user.email %>
-                  <%= User.find(current_user.id).province.name %><%= User.find(current_user.id).province.gst %><%= User.find(current_user.id).province.gst %>
                 <% else %>
                   User
                 <% end %>
