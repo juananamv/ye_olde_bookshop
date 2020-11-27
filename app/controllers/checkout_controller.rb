@@ -37,9 +37,9 @@ class CheckoutController < ApplicationController
       prod_ref.quantity -= qty.to_i
       prod_ref.save
       new_order.order_items.create(
-        product_id: item.to_i,
-        count:      qty.to_i,
-        subtotal:   (prod_ref.price * qty.to_i)
+        product_name: prod_ref.name.to_s,
+        count:        qty.to_i,
+        subtotal:     (prod_ref.price * qty.to_i)
       )
     end
 

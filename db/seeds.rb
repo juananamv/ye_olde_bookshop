@@ -40,9 +40,9 @@ NUMBER_OF_CATEGORIES.times do
       price:       Faker::Commerce.price,
       quantity:    rand(3..22)
     )
-    # Uncomment for final
-    downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{product.name}")
-    product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
+    # # Uncomment for final
+    # downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{product.name}")
+    # product.image.attach(io: downloaded_image, filename: "m-#{product.name}")
   end
 end
 

@@ -2,8 +2,8 @@ name,province_code,gst,pst
 Alberta,AB,0.05,0
 British Columbia,BC,0.05,0.07
 Manitoba,MB,0.05,0.07
-New Brunswick,NB,0,0
-Newfoundland and Labrador,NL,0,0
+New Brunswick,NB,0.15,0
+Newfoundland and Labrador,NL,0.15,0
 Northwest Territories,NT,0.05,0
 Nova Scotia,NS,0.15,0
 Nunavut,NU,0.05,0
@@ -11,4 +11,4 @@ Ontario,ON,0.13,0
 Prince Edward Island,PE,0.15,0
 Quebec,QC,0.05,0.09975
 Saskatchewan,SK,0.05,0.06
-Yukon,YT,0,0
+Yukon,YT,0.05,0.05
