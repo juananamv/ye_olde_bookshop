@@ -62,3 +62,6 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 # AWS S3
 gem "aws-sdk-s3", require: false
+
+# Stripe API
+gem "stripe"
