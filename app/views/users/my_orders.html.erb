@@ -2,6 +2,7 @@
 <div class="container">
   <% @orders.each do |o| %>
     <h3 class="title is-3">Order #<%= o.id %></h3>
+    <h5 class="title is-5">Status: <%= o.status %></h5>
     <h4 class="title is-4"><%= o.created_at%></h4>
     <table class="table" style="width: 100%; table-layout: fixed; text-align: right">
       <thead>
@@ -14,15 +15,15 @@
       <tbody>
         <% o.order_items.each do |oi| %>
           <tr>
-            <td style="text-align: left"><%= oi.product.name %></td>
+            <td style="text-align: left"><%= oi.product_name %></td>
             <td><%= oi.count %></td>
             <td><%= number_to_currency oi.subtotal %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <h5>GST/HST: <%= number_to_currency(o.total * @user.province.gst) %></h5>
-    <h5>PST: <%= number_to_currency(o.total * @user.province.gst) %></h5>
+    <h5>GST/HST: <%= number_to_currency(o.gst) %></h5>
+    <h5>PST: <%= number_to_currency(o.pst) %></h5>
     <h5>Grand Total: <%= number_to_currency(o.total + (o.total * @user.province.gst) + (o.total * @user.province.pst)) %></h5>
   <% end %>
 </div>

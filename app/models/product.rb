@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :product_tags
+  has_many :product_tags, dependent: :destroy
   has_many :categories, through: :product_tags
   accepts_nested_attributes_for :product_tags, allow_destroy: true
   validates :name, :price, :quantity, presence: true
