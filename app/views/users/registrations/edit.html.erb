@@ -31,7 +31,7 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="field"><%= f.label :province %><br />
+  <div class="field"><%= f.label :province_id %><br />
     <%= f.select :province_id, Province.all.collect {|u| [u.name, u.id]} %>
   </div>
 
@@ -54,6 +54,8 @@
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy?</p>
+<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+
 
 <%= link_to "Back", :back %>

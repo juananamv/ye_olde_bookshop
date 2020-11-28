@@ -119,7 +119,7 @@ class CheckoutController < ApplicationController
 
   def cancel
     @order = Order.find_by(stripe_session: params[:session_id])
-    unless @order.nil?
+    if !@order.nil? && @order.status == "Awaiting Payment"
       @order.order_items&.each do |item|
         product_ref = Product.find(item.product_id)
         product_ref.quantity += item.count

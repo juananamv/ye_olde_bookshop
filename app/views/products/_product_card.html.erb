@@ -36,7 +36,7 @@
       <div class="card-footer-item">
         <% if !session[:cart].key?(product.id.to_s)%>
           <%= form_with(url: "/products/add_to_cart/#{product.id}", method: "post", class: "field") do %>
-            <%= number_field_tag(:quantity, nil, class: "input") %>
+            <%= number_field_tag(:quantity, nil, { :id => "quantity#{product.id}", :class => "input" }) %>
             <%= submit_tag("Add to Cart", class: "button is-link")%>
           <% end %>
         <% else %>

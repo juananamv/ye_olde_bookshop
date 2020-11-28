@@ -31,7 +31,7 @@ provinces.each do |p|
 end
 
 NUMBER_OF_CATEGORIES.times do
-  category = Category.create(name: Faker::Book.genre)
+  category = Category.create(name: Faker::Book.unique.genre)
 
   NUMBER_PER_CATEGORY.times do
     product = category.products.create(
