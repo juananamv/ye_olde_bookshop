@@ -24,7 +24,7 @@
       <% end %>
     </div>
     <footer class="card-footer is-align-items-center">
-      <% if product.quantity.zero? %>
+      <% if product.quantity <= 0 %>
         <div class="card-footer-item">Out of Stock</div>
       <% else %>
         <div class="card-footer-item">

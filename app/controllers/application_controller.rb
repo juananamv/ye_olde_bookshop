@@ -16,4 +16,15 @@ class ApplicationController < ActionController::Base
       user_params.permit(:email, :password, :current_password, :province_id, :address, :city, :postal_code)
     end
    end
+
+  private
+
+  def initialize_session
+    session[:cart] ||= {}
+  end
+
+  def load_cart
+    array = session[:cart].keys
+    @cart = Product.find(array)
+  end
 end
