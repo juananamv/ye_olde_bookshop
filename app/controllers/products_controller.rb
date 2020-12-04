@@ -61,15 +61,4 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end
-
-  private
-
-  def initialize_session
-    session[:cart] ||= {}
-  end
-
-  def load_cart
-    array = session[:cart].keys
-    @cart = Product.find(array)
-  end
 end

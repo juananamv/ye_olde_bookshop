@@ -43,7 +43,7 @@
       </tr>
   </tbody>
 </table>
-<%= form_with(url: "/checkout/submit", method: "post", class: "field") do %>
+<%= form_with(url: "/checkout/create", method: "post", class: "field") do %>
   <%= hidden_field_tag(:cart, @shopping_cart) %>
   <%= hidden_field_tag(:subtotal, @subtotal) %>
   <%= hidden_field_tag(:gst, @gst) %>
